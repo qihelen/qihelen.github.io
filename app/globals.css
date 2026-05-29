@@ -1,26 +1,99 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
+  --background: #f8f5ef;
   --foreground: #171717;
+  --surface: #f8f5ef;
+  --ink: #171717;
+  --muted: #6b625a;
+  --line: rgba(23, 23, 23, 0.13);
+  --panel: rgba(255, 255, 255, 0.72);
+  --glass: rgba(255, 255, 255, 0.58);
+  --nav: rgba(248, 245, 239, 0.76);
+  --soft: rgba(88, 111, 124, 0.11);
+  --band: #efeee8;
+  --warm: #ebe0cf;
+  --cool: #d9e3df;
+  --image-a: #9b7b68;
+  --image-b: #364f5c;
+  --image-c: #e9d8b8;
+}
+
+.dark {
+  --background: #10100f;
+  --foreground: #f4efe7;
+  --surface: #10100f;
+  --ink: #f4efe7;
+  --muted: #b8ada1;
+  --line: rgba(244, 239, 231, 0.14);
+  --panel: rgba(28, 27, 25, 0.78);
+  --glass: rgba(28, 27, 25, 0.6);
+  --nav: rgba(16, 16, 15, 0.74);
+  --soft: rgba(195, 172, 132, 0.13);
+  --band: #171715;
+  --warm: #24211d;
+  --cool: #142021;
+  --image-a: #6d5749;
+  --image-b: #213b43;
+  --image-c: #8b744d;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Inter", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SFMono-Regular", "Roboto Mono", Consolas, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--surface);
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--surface);
+}
+
+a {
+  text-decoration: none;
+}
+
+.gallery-art {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 34%),
+    linear-gradient(45deg, var(--image-a), #c7b190 42%, var(--image-b));
+  background-size: cover;
+}
+
+.gallery-photo {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 38%),
+    linear-gradient(120deg, #2f3a3d, #7c8c86 44%, #d4c4a5);
+  background-size: cover;
+}
+
+.music-panel {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 28px,
+      var(--line) 29px,
+      transparent 30px
+    ),
+    linear-gradient(135deg, var(--panel), var(--soft));
 }
