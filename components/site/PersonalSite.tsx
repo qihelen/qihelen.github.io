@@ -24,7 +24,7 @@ export function PersonalSite() {
       <Section
         id="about"
         eyebrow="About"
-        title="An interdisciplinary practice shaped by institutions, interpretation, and aesthetics."
+        title="Exploring the Intersection of Law, Philosophy, Economics, Aesthetics, and Technology."
       >
         <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <Card className="flex flex-col justify-between">
@@ -61,7 +61,7 @@ export function PersonalSite() {
             className="rounded-3xl border border-[var(--line)] bg-[var(--panel)] p-8 shadow-[0_24px_80px_rgba(0,0,0,0.06)] sm:p-10"
           >
             <p className="text-pretty text-2xl leading-10 text-[var(--ink)]">
-              Helen is particularly interested in antitrust law, constitutional
+              Helen is interested in antitrust law, constitutional
               law, and the implications of artificial intelligence for legal
               institutions and practice. Drawn to questions that require both
               rigorous analytical thinking and creativity, she enjoys exploring
@@ -77,14 +77,14 @@ export function PersonalSite() {
       <Section
         id="experience"
         eyebrow="Experience"
-        title="Legal research, empirical analysis, institutional work, and creative leadership."
+        title="Legal Research, Quantitative Analysis, Strategic Advising, and Institutional Decision-Making."
         className="bg-[var(--band)]"
       >
         <div className="grid gap-5 md:grid-cols-2">
           {experiences.map((item) => (
             <Card key={item.title}>
               <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--muted)]">
-                Experience
+                {item.role}
               </p>
               <h3 className="mt-5 text-2xl font-semibold text-[var(--ink)]">
                 {item.title}
@@ -99,9 +99,9 @@ export function PersonalSite() {
 
       <Section
         id="research"
-        eyebrow="Research"
+        eyebrow="Research Experience"
         title="Empirical, technical, and scientific research experience."
-        hideHeader
+        hideTitle
       >
         <div className="grid gap-5 lg:grid-cols-3">
           {researchAreas.map((area) => (
@@ -202,21 +202,36 @@ export function PersonalSite() {
       <Section
         id="contact"
         eyebrow="Contact"
-        title="For research, professional inquiries, performances, and creative collaboration."
+        title="For Research, Professional Inquiries, and Creative Collaboration."
       >
-        <div className="grid gap-4 md:grid-cols-3">
-          {["Email placeholder", "LinkedIn placeholder", "Resume download"].map(
+        <div className="grid gap-4 md:grid-cols-2">
+          {[
+            {
+              label: "Email",
+              href: "mailto:helenqi22@gmail.com",
+            },
+            {
+              label: "LinkedIn",
+              href: "https://www.linkedin.com/in/helen-qi-b85ba3154/",
+            },
+          ].map(
             (item) => (
               <motion.a
-                key={item}
-                href="#"
+                key={item.label}
+                href={item.href}
+                target={item.href.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  item.href.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
                 whileHover={{ y: -6 }}
                 className="rounded-2xl border border-[var(--line)] bg-[var(--ink)] p-6 text-[var(--surface)] shadow-[0_24px_80px_rgba(0,0,0,0.12)] transition hover:shadow-[0_28px_100px_rgba(0,0,0,0.18)]"
               >
                 <p className="font-mono text-xs uppercase tracking-[0.24em] opacity-70">
                   Connect
                 </p>
-                <p className="mt-6 text-2xl font-semibold">{item}</p>
+                <p className="mt-6 text-2xl font-semibold">{item.label}</p>
               </motion.a>
             ),
           )}

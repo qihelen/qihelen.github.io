@@ -10,6 +10,7 @@ type SectionProps = {
   children: ReactNode;
   className?: string;
   hideHeader?: boolean;
+  hideTitle?: boolean;
 };
 
 export function Section({
@@ -19,6 +20,7 @@ export function Section({
   children,
   className = "",
   hideHeader = false,
+  hideTitle = false,
 }: SectionProps) {
   return (
     <section
@@ -37,9 +39,11 @@ export function Section({
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.28em] text-[var(--muted)]">
               {eyebrow}
             </p>
-            <h2 className="text-balance text-4xl font-semibold leading-tight text-[var(--ink)] sm:text-5xl">
-              {title}
-            </h2>
+            {!hideTitle && (
+              <h2 className="text-balance text-4xl font-semibold leading-tight text-[var(--ink)] sm:text-5xl">
+                {title}
+              </h2>
+            )}
           </motion.div>
         )}
         {children}

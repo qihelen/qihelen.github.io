@@ -15,26 +15,31 @@ export const interests = [
   "Corporate Personhood",
   "AI Governance",
   "Political Theory",
+  "Aesthetics",
 ];
 
 export const experiences = [
   {
-    title: "Cornerstone Research / Incoming Summer Analyst",
+    title: "Cornerstone Research",
+    role: "Incoming Summer Analyst",
     detail:
       "Incoming analyst role focused on economic consulting, litigation support, and rigorous quantitative analysis.",
   },
   {
-    title: "Superior Court of Delaware / Judicial Intern",
+    title: "Superior Court of Delaware",
+    role: "Judicial Intern",
     detail:
       "Conducted legal research and drafted preliminary bench opinions and orders for civil and criminal matters.",
   },
   {
-    title: "270 Strategies / Summer Associate",
+    title: "270 Strategies",
+    role: "Summer Associate",
     detail:
       "Led survey data analysis and client presentation work while researching and drafting clean energy proposals.",
   },
   {
-    title: "United States House of Representatives / Congressional Intern",
+    title: "United States House of Representatives",
+    role: "Congressional Intern",
     detail:
       "Drafted constituent letters, assisted with casework, conducted legislative research, and helped organize community outreach events.",
   },

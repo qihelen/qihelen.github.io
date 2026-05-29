@@ -25,12 +25,12 @@ export function Hero() {
             Helen Qi
           </h1>
           <p className="mt-8 max-w-2xl text-pretty text-xl leading-8 text-[var(--muted)] sm:text-2xl sm:leading-9">
-            Welcome! My name is Helen Qi, and I study Ethics, Politics, and
-            Economics at Yale University. My research and academic interests
-            include corporate personhood, antitrust law, political theory, and
-            AI ethics. Outside of these areas, I am passionate about the arts,
-            and I am always looking for new ways to combine analytical and
-            creative ways of thinking.
+            Welcome! I study Ethics, Politics, and Economics at Yale
+            University. My research and academic interests include corporate
+            personhood, antitrust law, political theory, and AI ethics. Outside
+            of these areas, I am passionate about the arts, and I am always
+            looking for new ways to combine analytical and creative ways of
+            thinking.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             {interests.map((interest) => (
@@ -66,7 +66,7 @@ export function Hero() {
                   Helen Qi
                 </p>
                 <p className="mt-3 text-2xl font-medium">
-                  Yale University / EPE
+                  Yale University / EP&amp;E
                 </p>
               </div>
             </div>
