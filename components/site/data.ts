@@ -124,10 +124,10 @@ export const projectSections = [
     title: "Writing & Essays",
     items: [
       {
-        title: "AI Responsibility Gaps",
+        title: "AI Responsibility Gaps                  ",
         category: "AI Ethics",
         description:
-          "Essay placeholder for writing on accountability, agency, and responsibility gaps in artificial intelligence systems.",
+          "Explores whether artificial intelligence can undermine traditional concepts of moral responsibility and what accountability should look like in increasingly automated systems.",
         links: [
           {
             label: "Read Essay",
@@ -139,7 +139,7 @@ export const projectSections = [
         title: "Defining Art: Aesthetic Judgment and an Asian American Artist",
         category: "Personal Essay",
         description:
-          "Essay placeholder for writing on aesthetic judgment, identity, authorship, and artistic interpretation.",
+          "Examines the relationship between beauty, artistic intention, and cultural meaning through philosophy, art criticism, and personal reflection.",
         links: [
           {
             label: "Read Essay",
@@ -151,7 +151,7 @@ export const projectSections = [
         title: "The Failure of the 20th Century",
         category: "Cultural Critique",
         description:
-          "Essay placeholder for cultural and historical critique of twentieth-century political, social, and institutional failures.",
+          "A critique of twentieth-century musical modernism and its impact on audience engagement, artistic standards, and cultural taste.",
         links: [
           {
             label: "Read Essay",
@@ -163,7 +163,7 @@ export const projectSections = [
         title: "Logical Impossibility of Moral Dilemmas",
         category: "Philosophy",
         description:
-          "Essay placeholder for philosophical work on moral reasoning, contradiction, and the structure of ethical dilemmas.",
+          "Philosophical work on moral dilemmas, moral obligation, and whether genuine ethical conflicts are logically possible.",
         links: [
           {
             label: "Read Essay",
