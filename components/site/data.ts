@@ -98,22 +98,8 @@ export const researchAreas = [
 
 export const featuredProjects = [
   {
-    title: "Amicus",
-    category: "Legal AI / Constitutional Analysis",
-    description:
-      "An AI-assisted legal research and constitutional analysis platform for modeling judicial reasoning through originalist interpretive frameworks.",
-  },
-  {
-    title: "Corporate Personhood & Antitrust",
-    category: "Research & Writing",
-    description:
-      "Research notes on the legal and economic implications of corporate personhood, competition policy, and institutional accountability.",
-  },
-  {
-    title: "Selected Essays",
-    category: "Academic Work",
-    description:
-      "A curated set of essays across political theory, law, aesthetics, economic institutions, and public life.",
+    title: "Technical Projects and Writing",
+    description: "Exploring Constitutional Interpretation, Artificial Intelligence, Philosophy, and Aesthetics Through Technical Projects and Original Scholarship.",
   },
 ];
 

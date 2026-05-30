@@ -103,6 +103,7 @@ export function PersonalSite() {
         eyebrow="Research Experience"
         title="Empirical, technical, and scientific research experience."
         hideTitle
+         className="bg-[var(--bg)]"
       >
         <div className="grid gap-5 lg:grid-cols-3">
           {researchAreas.map((area) => (
@@ -124,10 +125,11 @@ export function PersonalSite() {
       <Section
         id="projects"
         eyebrow="Projects & Writing"
-        title="Technical Projects, Legal Research, and Selected Academic Work."
-        className="bg-[var(--band)]"
+        title="Exploring Constitutional Interpretation, Artificial Intelligence, Philosophy, and Aesthetics Through Technical Projects and Original Scholarship."
+        hideTitle
+        className="bg-[var(--panel)]"
       >
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-1">
           {featuredProjects.map((item, index) => (
             <motion.a
               key={item.title}
@@ -141,7 +143,7 @@ export function PersonalSite() {
                 ease: [0.16, 1, 0.3, 1],
               }}
               whileHover={{ y: -6 }}
-              className="group flex min-h-72 flex-col justify-between rounded-2xl border border-[var(--line)] bg-[var(--panel)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] transition duration-300 hover:border-[var(--blue)] hover:shadow-[0_28px_100px_rgba(0,0,0,0.34)]"
+              className="group flex flex-col rounded-2xl border border-[var(--line)] bg-[var(--panel)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] transition duration-300 hover:border-[var(--blue)] hover:shadow-[0_28px_100px_rgba(0,0,0,0.34)]"
             >
               <div>
                 <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--burgundy)]">
@@ -154,7 +156,7 @@ export function PersonalSite() {
                   {item.description}
                 </p>
               </div>
-              <span className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-[var(--ink)] transition duration-300 group-hover:text-[var(--blue-deep)]">
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[var(--ink)] transition duration-300 group-hover:text-[var(--blue-deep)]">
                 View details
                 <span className="transition duration-300 group-hover:translate-x-1">
                   →
