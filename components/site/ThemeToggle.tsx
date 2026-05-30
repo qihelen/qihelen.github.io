@@ -31,7 +31,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="group relative grid h-10 w-10 place-items-center rounded-full border border-[var(--line)] bg-[var(--glass)] text-[var(--ink)] shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:border-[var(--ink)]"
+      className="group relative grid h-10 w-10 place-items-center rounded-full border border-[var(--line)] bg-[var(--glass)] text-[var(--ink)] shadow-sm backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-[var(--blue)] hover:text-[var(--blue-deep)]"
       aria-label="Toggle dark mode"
       title="Toggle dark mode"
     >

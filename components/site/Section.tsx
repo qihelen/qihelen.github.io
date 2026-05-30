@@ -33,14 +33,14 @@ export function Section({
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-120px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.86, ease: [0.16, 1, 0.3, 1] }}
             className="mb-12 max-w-3xl"
           >
-            <p className="mb-4 font-mono text-xs uppercase tracking-[0.28em] text-[var(--muted)]">
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.28em] text-[var(--burgundy)]">
               {eyebrow}
             </p>
             {!hideTitle && (
-              <h2 className="text-balance text-4xl font-semibold leading-tight text-[var(--ink)] sm:text-5xl">
+              <h2 className="font-display text-balance text-4xl leading-tight tracking-normal text-[var(--ink)] sm:text-5xl">
                 {title}
               </h2>
             )}

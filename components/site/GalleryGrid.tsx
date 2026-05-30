@@ -38,11 +38,12 @@ export function GalleryGrid({ items, variant }: GalleryGridProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{
-                duration: 0.62,
+                duration: 0.72,
                 delay: index * 0.06,
-                ease: [0.22, 1, 0.36, 1],
+                ease: [0.16, 1, 0.3, 1],
               }}
-              className="group overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--panel)] shadow-[0_24px_70px_rgba(0,0,0,0.07)]"
+              whileHover={{ y: -5 }}
+              className="group overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--panel)] shadow-[0_24px_70px_rgba(0,0,0,0.24)] transition-colors duration-300 hover:border-[var(--line-strong)]"
             >
               {item.src ? (
                 <div
@@ -57,7 +58,7 @@ export function GalleryGrid({ items, variant }: GalleryGridProps) {
                     alt={item.title}
                     fill
                     sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover transition duration-500 group-hover:scale-[1.04]"
+                    className="object-cover saturate-[0.96] transition duration-700 group-hover:scale-[1.04] group-hover:saturate-100"
                   />
                 </div>
               ) : (
@@ -79,6 +80,6 @@ export function GalleryGrid({ items, variant }: GalleryGridProps) {
           ))}
         </div>
       ))}
-            </div>
+    </div>
   );
 }

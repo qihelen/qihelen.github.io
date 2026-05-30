@@ -6,6 +6,7 @@ import { Card } from "./Card";
 import {
   artWorks,
   experiences,
+  featuredProjects,
   interests,
   photographyWorks,
   researchAreas,
@@ -32,7 +33,7 @@ export function PersonalSite() {
               <p className="font-mono text-xs uppercase tracking-[0.28em] text-[var(--muted)]">
                 Currently
               </p>
-              <h3 className="mt-5 text-3xl font-semibold text-[var(--ink)]">
+              <h3 className="font-display mt-5 text-4xl text-[var(--ink)]">
                 Yale University
               </h3>
               <p className="mt-3 text-lg text-[var(--muted)]">
@@ -57,8 +58,8 @@ export function PersonalSite() {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="rounded-3xl border border-[var(--line)] bg-[var(--panel)] p-8 shadow-[0_24px_80px_rgba(0,0,0,0.06)] sm:p-10"
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="rounded-3xl border border-[var(--line)] bg-[var(--panel)] p-8 shadow-[0_24px_80px_rgba(0,0,0,0.24)] sm:p-10"
           >
             <p className="text-pretty text-2xl leading-10 text-[var(--ink)]">
               Helen is interested in antitrust law, constitutional
@@ -83,10 +84,10 @@ export function PersonalSite() {
         <div className="grid gap-5 md:grid-cols-2">
           {experiences.map((item) => (
             <Card key={item.title}>
-              <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--muted)]">
+              <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--burgundy)]">
                 {item.role}
               </p>
-              <h3 className="mt-5 text-2xl font-semibold text-[var(--ink)]">
+              <h3 className="font-display mt-5 text-3xl text-[var(--ink)]">
                 {item.title}
               </h3>
               <p className="mt-4 leading-7 text-[var(--muted)]">
@@ -109,13 +110,57 @@ export function PersonalSite() {
               <span className="rounded-full bg-[var(--soft)] px-3 py-1 text-xs font-medium text-[var(--ink)]">
                 {area.label}
               </span>
-              <h3 className="mt-6 text-2xl font-semibold text-[var(--ink)]">
+              <h3 className="font-display mt-6 text-3xl text-[var(--ink)]">
                 {area.title}
               </h3>
               <p className="mt-4 leading-7 text-[var(--muted)]">
                 {area.detail}
               </p>
             </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        id="projects"
+        eyebrow="Projects & Writing"
+        title="Technical Projects, Legal Research, and Selected Academic Work."
+        className="bg-[var(--band)]"
+      >
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {featuredProjects.map((item, index) => (
+            <motion.a
+              key={item.title}
+              href="/projects"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{
+                duration: 0.72,
+                delay: index * 0.05,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              whileHover={{ y: -6 }}
+              className="group flex min-h-72 flex-col justify-between rounded-2xl border border-[var(--line)] bg-[var(--panel)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] transition duration-300 hover:border-[var(--blue)] hover:shadow-[0_28px_100px_rgba(0,0,0,0.34)]"
+            >
+              <div>
+                <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--burgundy)]">
+                  {item.category}
+                </p>
+                <h3 className="font-display mt-5 text-3xl leading-tight text-[var(--ink)]">
+                  {item.title}
+                </h3>
+                <p className="mt-4 leading-7 text-[var(--muted)]">
+                  {item.description}
+                </p>
+              </div>
+              <span className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-[var(--ink)] transition duration-300 group-hover:text-[var(--blue-deep)]">
+                View details
+                <span className="transition duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+              </span>
+            </motion.a>
           ))}
         </div>
       </Section>
@@ -131,7 +176,7 @@ export function PersonalSite() {
             <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--muted)]">
               Yale Symphony Orchestra
             </p>
-            <h3 className="mt-5 text-3xl font-semibold text-[var(--ink)]">
+            <h3 className="font-display mt-5 text-4xl text-[var(--ink)]">
               Viola
             </h3>
             <p className="mt-5 text-base leading-8 text-[var(--muted)] sm:text-lg">
@@ -157,9 +202,9 @@ export function PersonalSite() {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -6 }}
-            className="group overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--panel)] shadow-[0_24px_80px_rgba(0,0,0,0.06)]"
+            className="group overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--panel)] shadow-[0_24px_80px_rgba(0,0,0,0.24)] transition-colors duration-300 hover:border-[var(--line-strong)]"
           >
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
@@ -167,7 +212,7 @@ export function PersonalSite() {
                 alt="Helen Qi performing viola with an ensemble"
                 fill
                 sizes="(min-width: 1024px) 42vw, 100vw"
-                className="object-cover transition duration-500 group-hover:scale-[1.04]"
+                className="object-cover saturate-[0.96] transition duration-700 group-hover:scale-[1.04] group-hover:saturate-100"
               />
             </div>
             <div className="border-t border-[var(--line)] p-6">
@@ -226,7 +271,7 @@ export function PersonalSite() {
                     : undefined
                 }
                 whileHover={{ y: -6 }}
-                className="rounded-2xl border border-[var(--line)] bg-[var(--ink)] p-6 text-[var(--surface)] shadow-[0_24px_80px_rgba(0,0,0,0.12)] transition hover:shadow-[0_28px_100px_rgba(0,0,0,0.18)]"
+                className="rounded-2xl border border-[var(--line)] bg-[var(--panel)] p-6 text-[var(--ink)] shadow-[0_24px_80px_rgba(0,0,0,0.24)] transition duration-300 hover:-translate-y-1 hover:border-[var(--blue)] hover:shadow-[0_28px_100px_rgba(0,0,0,0.34)]"
               >
                 <p className="font-mono text-xs uppercase tracking-[0.24em] opacity-70">
                   Connect
