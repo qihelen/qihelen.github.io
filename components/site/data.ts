@@ -98,6 +98,7 @@ export const researchAreas = [
 
 export const featuredProjects = [
   {
+    category: "Portfolio",
     title: "Technical Projects and Writing",
     description: "Exploring Constitutional Interpretation, Artificial Intelligence, Philosophy, and Aesthetics Through Technical Projects and Original Scholarship.",
   },
