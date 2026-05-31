@@ -87,11 +87,11 @@ export function EssayPage({ essay }: EssayPageProps) {
   };
 
   return (
-    <main className="min-h-screen bg-[var(--surface)] text-[var(--ink)]">
+    <main className="museum-page min-h-screen bg-[var(--surface)] text-[var(--ink)]">
       <Nav />
 
-      <article className="px-5 pb-24 pt-44 sm:px-8 lg:px-12 lg:pt-40">
-        <div className="mx-auto max-w-3xl">
+      <article className="px-5 pb-24 pt-56 sm:px-8 lg:px-12 lg:pt-52">
+        <div className="mx-auto max-w-[680px]">
           <motion.header
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
@@ -128,7 +128,7 @@ export function EssayPage({ essay }: EssayPageProps) {
                     {block.images.map((image) => (
                       <figure
                         key={image.src}
-                        className="overflow-hidden border border-[var(--line)] bg-[var(--card)]"
+                        className="overflow-hidden"
                       >
                         <img
                           src={image.src}
@@ -137,7 +137,7 @@ export function EssayPage({ essay }: EssayPageProps) {
                           loading="lazy"
                         />
                         {image.caption && (
-                          <figcaption className="border-t border-[var(--line)] px-4 py-3 text-sm leading-5 text-[var(--muted)]">
+                          <figcaption className="px-4 py-3 text-sm leading-5 text-[var(--muted)]">
                             {image.caption}
                           </figcaption>
                         )}
@@ -150,7 +150,7 @@ export function EssayPage({ essay }: EssayPageProps) {
               return (
                 <figure
                   key={index}
-                  className={`my-10 overflow-hidden border border-[var(--line)] bg-[var(--card)] ${
+                  className={`my-10 overflow-hidden ${
                     imageSizeClass[block.size ?? "default"]
                   }`}
                 >

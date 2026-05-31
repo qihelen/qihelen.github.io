@@ -11,6 +11,7 @@ type SectionProps = {
   className?: string;
   hideHeader?: boolean;
   hideTitle?: boolean;
+  animateOnMount?: boolean;
 };
 
 export function Section({
@@ -21,6 +22,7 @@ export function Section({
   className = "",
   hideHeader = false,
   hideTitle = false,
+  animateOnMount = false,
 }: SectionProps) {
   return (
     <section
@@ -31,9 +33,10 @@ export function Section({
         {!hideHeader && (
           <motion.div
             initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-120px" }}
-            transition={{ duration: 0.86, ease: [0.16, 1, 0.3, 1] }}
+            animate={animateOnMount ? { opacity: 1, y: 0 } : undefined}
+            whileInView={animateOnMount ? undefined : { opacity: 1, y: 0 }}
+            viewport={animateOnMount ? undefined : { once: true, margin: "-120px" }}
+            transition={{ duration: 0.86, delay: animateOnMount ? 0.3 : 0, ease: [0.16, 1, 0.3, 1] }}
             className="mb-12 max-w-3xl"
           >
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.28em] text-[var(--burgundy)]">

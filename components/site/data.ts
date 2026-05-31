@@ -32,7 +32,7 @@ export const navItems = [
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Research", href: "#research" },
-  { label: "Projects", href: "/projects" },
+  { label: "Projects", href: "#projects" },
   { label: "Music", href: "#music" },
   { label: "Art", href: "#art" },
   { label: "Photography", href: "#photography" },
@@ -124,7 +124,7 @@ export const projectSections = [
     title: "Writing & Essays",
     items: [
       {
-        title: "AI Responsibility Gaps                  ",
+        title: "AI Responsibility Gaps",
         category: "AI Ethics",
         description:
           "Explores whether artificial intelligence can undermine traditional concepts of moral responsibility and what accountability should look like in increasingly automated systems.",

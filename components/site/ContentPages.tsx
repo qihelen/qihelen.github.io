@@ -2,71 +2,54 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
+import type { ReactNode } from "react";
 import { Card } from "./Card";
 import {
   artWorks,
   experiences,
+  featuredProjects,
   photographyWorks,
-  projectSections,
   researchAreas,
 } from "./data";
 import { GalleryGrid } from "./GalleryGrid";
-import { Hero } from "./Hero";
-import { InkDroplets } from "./InkDroplets";
 import { Nav } from "./Nav";
 import { Section } from "./Section";
 
-const manifestoLines = [
-  "Every meaningful pursuit begins with curiosity.",
-  "Long before expertise, achievement, or innovation comes the willingness to ask questions and follow them wherever they lead.",
-  "In a world changing faster than ever, intellectual curiosity may matter more than any particular skill or expertise.",
-  "It drives discovery, challenges assumptions, and expands the boundaries of what we believe is possible.",
-];
-
-const contacts = [
-  {
-    label: "Email",
-    href: "mailto:helenqi22@gmail.com",
-  },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/helen-qi-b85ba3154/",
-  },
-];
-
-export function PersonalSite() {
+function PageShell({ children }: { children: ReactNode }) {
   return (
     <main className="museum-page min-h-screen bg-[var(--surface)] text-[var(--ink)]">
-      <div aria-hidden="true" className="site-ink-atmosphere">
-        <div className="museum-marble-bg absolute inset-0">
-          <div className="museum-marble-veins" />
-          <div className="museum-window-light" />
-          <div className="museum-window-shadow" />
-          <div className="museum-soft-vignette" />
-        </div>
-        <InkDroplets />
-      </div>
       <Nav />
-      <Hero />
+      {children}
+    </main>
+  );
+}
 
+export function AboutPage() {
+  const manifestoLines = [
+    "Every meaningful pursuit begins with curiosity.",
+    "Long before expertise, achievement, or innovation comes the willingness to ask questions and follow them wherever they lead.",
+    "In a world changing faster than ever, intellectual curiosity may matter more than any particular skill or expertise.",
+    "It drives discovery, challenges assumptions, and expands the boundaries of what we believe is possible.",
+  ];
+
+  return (
+    <PageShell>
       <Section
         id="about"
         eyebrow=""
         title=""
         hideHeader
-        className="section-reveal"
+        className="min-h-screen pt-56 lg:pt-52"
       >
         <div className="space-y-7 text-center sm:space-y-9 lg:space-y-5">
           {manifestoLines.map((line, index) => (
             <motion.p
               key={line}
               initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-120px" }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 0.9,
-                delay: 0.1 + index * 0.15,
+                delay: 0.16 + index * 0.12,
                 ease: [0.16, 1, 0.3, 1],
               }}
               className="about-manifesto-line mx-auto text-balance font-display text-[2.35rem] leading-[1.08] text-[var(--ink)] sm:text-5xl sm:leading-[1.08] lg:text-[2.68rem] lg:leading-[1.04]"
@@ -76,12 +59,19 @@ export function PersonalSite() {
           ))}
         </div>
       </Section>
+    </PageShell>
+  );
+}
 
+export function ExperiencePage() {
+  return (
+    <PageShell>
       <Section
         id="experience"
         eyebrow="Experience"
         title="Legal Research, Quantitative Analysis, Strategic Advising, and Institutional Decision-Making."
-        className="section-reveal"
+        className="bg-[var(--band)] pt-56 lg:pt-52"
+        animateOnMount
       >
         <div className="grid gap-5 md:grid-cols-2">
           {experiences.map((item) => (
@@ -105,7 +95,6 @@ export function PersonalSite() {
         eyebrow="Research"
         title="Research experience as a subset of broader professional and intellectual work."
         hideTitle
-        className="section-reveal"
       >
         <div className="grid gap-5 lg:grid-cols-3">
           {researchAreas.map((area) => (
@@ -123,102 +112,74 @@ export function PersonalSite() {
           ))}
         </div>
       </Section>
+    </PageShell>
+  );
+}
 
+export function ResearchPage() {
+  return <ExperiencePage />;
+}
+
+export function ProjectsLandingPage() {
+  return (
+    <PageShell>
       <Section
         id="projects"
         eyebrow="Projects & Writing"
-        title="A working archive of technical projects, legal research, academic essays, and writing."
-        className="section-reveal"
+        title="Exploring Constitutional Interpretation, Artificial Intelligence, Philosophy, and Aesthetics Through Technical Projects and Original Scholarship."
+        hideTitle
+        className="min-h-screen bg-[var(--panel)] pt-56 lg:pt-52"
       >
-        <div className="grid gap-20">
-          {projectSections.map((section, sectionIndex) => (
-            <section key={section.title} className="scroll-mt-28">
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{
-                  duration: 0.78,
-                  delay: sectionIndex * 0.04,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="mb-8 border-t border-[var(--line)] pt-8"
-              >
-                <h3 className="font-display text-4xl leading-tight text-[var(--ink)] sm:text-5xl">
-                  {section.title}
+        <div className="grid gap-5">
+          {featuredProjects.map((item, index) => (
+            <motion.a
+              key={item.title}
+              href="/projects"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{
+                duration: 0.72,
+                delay: index * 0.05,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              whileHover={{ y: -6 }}
+              className="group flex flex-col rounded-2xl border border-[var(--line)] bg-[var(--panel)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] transition duration-300 hover:border-[var(--blue)] hover:shadow-[0_28px_100px_rgba(0,0,0,0.34)]"
+            >
+              <div>
+                <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--burgundy)]">
+                  {item.category}
+                </p>
+                <h3 className="font-display mt-5 text-3xl leading-tight text-[var(--ink)]">
+                  {item.title}
                 </h3>
-              </motion.div>
-
-              <div
-                className={`grid gap-5 ${
-                  section.title === "Writing & Essays"
-                    ? "sm:grid-cols-2 lg:grid-cols-4"
-                    : section.items.length > 1
-                      ? "md:grid-cols-2"
-                      : ""
-                }`}
-              >
-                {section.items.map((item, itemIndex) => (
-                  <motion.article
-                    key={item.title}
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{
-                      duration: 0.72,
-                      delay: itemIndex * 0.05,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    whileHover={{ y: -6 }}
-                    className="exhibition-panel rounded-2xl border border-[var(--line)] bg-[var(--panel)] p-6 shadow-[0_18px_54px_rgba(5,5,5,0.08)] transition-colors duration-300 hover:border-[var(--blue)] hover:shadow-[0_24px_70px_rgba(5,5,5,0.12)]"
-                  >
-                    <p className="font-mono text-xs uppercase tracking-[0.24em] text-[var(--burgundy)]">
-                      {item.category}
-                    </p>
-                    <h4 className="font-display mt-5 text-3xl leading-tight text-[var(--ink)]">
-                      {item.title}
-                    </h4>
-                    <p className="mt-4 leading-7 text-[var(--muted)]">
-                      {item.description}
-                    </p>
-                    <div className="mt-8 flex flex-wrap gap-2">
-                      {item.links.map((link) =>
-                        link.href.startsWith("http") ? (
-                          <a
-                            key={link.label}
-                            href={link.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`${item.title} ${link.label}`}
-                            className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs font-medium text-[var(--muted)] transition duration-300 hover:border-[var(--blue)] hover:bg-[var(--soft)] hover:text-[var(--ink)]"
-                          >
-                            {link.label}
-                          </a>
-                        ) : (
-                          <Link
-                            key={link.label}
-                            href={link.href}
-                            aria-label={`${item.title} ${link.label}`}
-                            className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs font-medium text-[var(--muted)] transition duration-300 hover:border-[var(--blue)] hover:bg-[var(--soft)] hover:text-[var(--ink)]"
-                          >
-                            Read Me
-                          </Link>
-                        ),
-                      )}
-                    </div>
-                  </motion.article>
-                ))}
+                <p className="mt-4 leading-7 text-[var(--muted)]">
+                  {item.description}
+                </p>
               </div>
-            </section>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[var(--ink)] transition duration-300 group-hover:text-[var(--blue-deep)]">
+                View details
+                <span className="transition duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+              </span>
+            </motion.a>
           ))}
         </div>
       </Section>
+    </PageShell>
+  );
+}
 
+export function MusicPage() {
+  return (
+    <PageShell>
       <Section
         id="music"
         eyebrow="Music"
         title="Aesthetic Lover: Art for Arts Sake, Music that Speaks for Itself"
-        className="section-reveal"
+        className="min-h-screen bg-[var(--band)] pt-56 lg:pt-52"
+        animateOnMount
       >
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <Card>
@@ -253,7 +214,7 @@ export function PersonalSite() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -6 }}
-            className="exhibition-panel group overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--panel)] shadow-[0_18px_54px_rgba(5,5,5,0.08)] transition-colors duration-300 hover:border-[var(--line-strong)]"
+            className="group overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--panel)] shadow-[0_24px_80px_rgba(0,0,0,0.24)] transition-colors duration-300 hover:border-[var(--line-strong)]"
           >
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
@@ -275,30 +236,62 @@ export function PersonalSite() {
           </motion.a>
         </div>
       </Section>
+    </PageShell>
+  );
+}
 
+export function ArtPage() {
+  return (
+    <PageShell>
       <Section
         id="art"
         eyebrow="Art"
         title="Self Portraits: A Portfolio for Sketches, Studies, and Finished Work"
-        className="section-reveal"
+        className="pt-56 lg:pt-52"
+        animateOnMount
       >
         <GalleryGrid items={artWorks} variant="art" />
       </Section>
+    </PageShell>
+  );
+}
 
+export function PhotographyPage() {
+  return (
+    <PageShell>
       <Section
         id="photography"
         eyebrow="Photography"
         title="The Way People Live: Portraits Across Countries"
-        className="section-reveal"
+        className="min-h-screen bg-[var(--band)] pt-56 lg:pt-52"
+        animateOnMount
       >
         <GalleryGrid items={photographyWorks} variant="photo" />
       </Section>
+    </PageShell>
+  );
+}
 
+export function ContactPage() {
+  const contacts = [
+    {
+      label: "Email",
+      href: "mailto:helenqi22@gmail.com",
+    },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/helen-qi-b85ba3154/",
+    },
+  ];
+
+  return (
+    <PageShell>
       <Section
         id="contact"
         eyebrow="Contact"
         title="For Research, Professional Inquiries, and Creative Collaboration."
-        className="section-reveal"
+        className="min-h-screen pt-56 lg:pt-52"
+        animateOnMount
       >
         <div className="grid gap-4 md:grid-cols-2">
           {contacts.map((item) => (
@@ -310,7 +303,7 @@ export function PersonalSite() {
                 item.href.startsWith("http") ? "noopener noreferrer" : undefined
               }
               whileHover={{ y: -4 }}
-              className="exhibition-panel rounded-2xl border border-[var(--line)] bg-[var(--panel)] p-6 text-[var(--ink)] shadow-[0_18px_54px_rgba(5,5,5,0.08)] transition duration-300 hover:border-[var(--blue)] hover:shadow-[0_24px_70px_rgba(5,5,5,0.12)]"
+              className="rounded-2xl border border-[var(--line)] bg-[var(--panel)] p-6 text-[var(--ink)] shadow-[0_24px_80px_rgba(0,0,0,0.24)] transition duration-300 hover:border-[var(--blue)] hover:shadow-[0_28px_100px_rgba(0,0,0,0.34)]"
             >
               <p className="font-mono text-xs uppercase tracking-[0.24em] opacity-70">
                 Connect
@@ -320,6 +313,6 @@ export function PersonalSite() {
           ))}
         </div>
       </Section>
-    </main>
+    </PageShell>
   );
 }

@@ -1,15 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Nav } from "./Nav";
 import { projectSections } from "./data";
 
 export function ProjectsPage() {
   return (
-    <main className="min-h-screen bg-[var(--surface)] text-[var(--ink)]">
+    <main className="museum-page min-h-screen bg-[var(--surface)] text-[var(--ink)]">
       <Nav />
 
-      <section className="px-5 pb-16 pt-44 sm:px-8 lg:px-12 lg:pt-40">
+      <section className="px-5 pb-16 pt-56 sm:px-8 lg:px-12 lg:pt-52">
         <div className="mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
@@ -23,12 +24,17 @@ export function ProjectsPage() {
             <h1 className="font-display text-balance text-6xl leading-[0.95] text-[var(--ink)] sm:text-7xl lg:text-8xl">
               Projects & Writing
             </h1>
-            <p className="mt-8 max-w-3xl text-pretty text-xl leading-8 text-[var(--muted)] sm:text-2xl sm:leading-9">
-              A working archive of technical projects, legal research,
-              academic essays, and writing at the intersection of institutions,
-              markets, governance, and culture.
-            </p>
           </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.78, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-8 max-w-3xl text-pretty text-xl leading-8 text-[var(--muted)] sm:text-2xl sm:leading-9"
+          >
+            A working archive of technical projects, legal research,
+            academic essays, and writing at the intersection of institutions,
+            markets, governance, and culture.
+          </motion.p>
         </div>
       </section>
 
@@ -86,20 +92,27 @@ export function ProjectsPage() {
                     </p>
                     <div className="mt-8 flex flex-wrap gap-2">
                       {item.links.map((link) => (
+                        link.href.startsWith("http") ? (
                         <a
                           key={link.label}
                           href={link.href}
-                          target={link.href.startsWith("http") ? "_blank" : undefined}
-                          rel={
-                            link.href.startsWith("http")
-                              ? "noopener noreferrer"
-                              : undefined
-                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
                           aria-label={`${item.title} ${link.label}`}
                           className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs font-medium text-[var(--muted)] transition duration-300 hover:border-[var(--blue)] hover:bg-[var(--soft)] hover:text-[var(--ink)]"
                         >
                           {link.label}
                         </a>
+                        ) : (
+                        <Link
+                          key={link.label}
+                          href={link.href}
+                          aria-label={`${item.title} ${link.label}`}
+                          className="rounded-full border border-[var(--line)] px-3 py-1.5 text-xs font-medium text-[var(--muted)] transition duration-300 hover:border-[var(--blue)] hover:bg-[var(--soft)] hover:text-[var(--ink)]"
+                        >
+                          {link.label}
+                        </Link>
+                        )
                       ))}
                     </div>
                   </motion.article>
