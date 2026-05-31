@@ -27,7 +27,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={`scroll-mt-28 px-5 py-24 sm:px-8 lg:px-12 ${className}`}
+      className={`content-section px-5 sm:px-8 lg:px-12 ${className}`}
     >
       <div className="mx-auto max-w-6xl">
         {!hideHeader && (
@@ -37,7 +37,7 @@ export function Section({
             whileInView={animateOnMount ? undefined : { opacity: 1, y: 0 }}
             viewport={animateOnMount ? undefined : { once: true, margin: "-120px" }}
             transition={{ duration: 0.86, delay: animateOnMount ? 0.3 : 0, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-12 max-w-3xl"
+            className="section-header mb-12 max-w-3xl"
           >
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.28em] text-[var(--burgundy)]">
               {eyebrow}
@@ -49,7 +49,7 @@ export function Section({
             )}
           </motion.div>
         )}
-        {children}
+        <div className="section-body">{children}</div>
       </div>
     </section>
   );

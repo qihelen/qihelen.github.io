@@ -37,7 +37,7 @@ const contacts = [
 
 export function PersonalSite() {
   return (
-    <main className="museum-page min-h-screen bg-[var(--surface)] text-[var(--ink)]">
+    <main className="museum-page home-scroll-page min-h-screen bg-[var(--surface)] text-[var(--ink)]">
       <div aria-hidden="true" className="site-ink-atmosphere">
         <div className="museum-marble-bg absolute inset-0">
           <div className="museum-marble-veins" />

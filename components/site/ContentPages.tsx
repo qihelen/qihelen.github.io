@@ -1,14 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Card } from "./Card";
 import {
   artWorks,
   experiences,
   featuredProjects,
-  photographyWorks,
   researchAreas,
 } from "./data";
 import { GalleryGrid } from "./GalleryGrid";
@@ -256,18 +255,237 @@ export function ArtPage() {
   );
 }
 
+const photographyStories = [
+  {
+    title: "Old Montreal Musician",
+    meta: "Montreal, 2024",
+    sentence: "A street corner holds its note a little longer than the crowd.",
+    src: "/images/photography/old-montreal-musician.jpg",
+    alt: "A musician performing on a street in Old Montreal",
+    layout: "full",
+  },
+  {
+    title: "The Streets of Skopje",
+    meta: "Skopje, 2024",
+    sentence: "Stone, shadow, and afternoon light gather into a public rhythm.",
+    src: "/images/photography/the-streets-of-skopje.jpg",
+    alt: "A city street scene in Skopje",
+    layout: "pair-left",
+  },
+  {
+    title: "Sunsets in North Macedonia",
+    meta: "North Macedonia, 2024",
+    sentence: "The horizon thins to gold before the evening closes in.",
+    src: "/images/photography/sunsets-in-north-macedonia.jpg",
+    alt: "A warm sunset in North Macedonia",
+    layout: "pair-right",
+  },
+  {
+    title: "The Winter Village",
+    meta: "New York, 2024",
+    sentence: "Winter turns the square into a small theater of passing faces.",
+    src: "/images/photography/the-winter-village.jpg",
+    alt: "A winter village scene with people and lights",
+    layout: "portrait",
+  },
+];
+
+type PhotographyStory = (typeof photographyStories)[number];
+
 export function PhotographyPage() {
+  const [selectedPhoto, setSelectedPhoto] = useState<PhotographyStory | null>(
+    null,
+  );
+
+  useEffect(() => {
+    if (!selectedPhoto) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedPhoto(null);
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [selectedPhoto]);
+
+  const fullImage = photographyStories[0];
+  const pairImages = photographyStories.slice(1, 3);
+  const portraitImage = photographyStories[3];
+
+  const renderPhoto = (
+    item: PhotographyStory,
+    imageClassName: string,
+    sizes: string,
+  ) => (
+    <figure className="photography-frame group">
+      <button
+        type="button"
+        onClick={() => setSelectedPhoto(item)}
+        className={`photography-image-button ${imageClassName}`}
+        aria-label={`Open ${item.title}`}
+      >
+        <Image
+          src={item.src}
+          alt={item.alt}
+          fill
+          sizes={sizes}
+          className="object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.035] group-hover:brightness-[0.82]"
+        />
+      </button>
+      <figcaption className="photography-caption">
+        <span className="font-display text-[0.95rem] italic text-[var(--ink)]">
+          {item.title}
+        </span>
+        <span className="text-[0.65rem] uppercase tracking-[0.26em] text-[var(--quiet)]">
+          {item.meta}
+        </span>
+        <span className="block max-w-[34rem] text-[0.82rem] leading-6 text-[var(--muted)]">
+          {item.sentence}
+        </span>
+      </figcaption>
+    </figure>
+  );
+
   return (
     <PageShell>
-      <Section
+      <section
         id="photography"
-        eyebrow="Photography"
-        title="The Way People Live: Portraits Across Countries"
-        className="min-h-screen bg-[var(--band)] pt-56 lg:pt-52"
-        animateOnMount
+        className="photography-page min-h-screen px-5 pb-28 pt-20 sm:px-8 sm:pt-36 lg:px-10"
       >
-        <GalleryGrid items={photographyWorks} variant="photo" />
-      </Section>
+        <motion.header
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto mb-6 max-w-6xl border-t border-[var(--line)] pt-8 sm:mb-20"
+        >
+          <p className="font-mono text-[0.68rem] uppercase tracking-[0.34em] text-[var(--quiet)]">
+            Photography
+          </p>
+          <h1 className="font-display mt-6 max-w-[18rem] text-balance text-[2.55rem] leading-[0.96] text-[var(--ink)] sm:mt-8 sm:max-w-5xl sm:text-6xl lg:text-[5.7rem]">
+            The way people live, held in available light.
+          </h1>
+          <p className="mt-4 max-w-[18rem] font-display text-lg italic leading-7 text-[var(--muted)] sm:mt-8 sm:max-w-2xl sm:text-2xl">
+            Streets, weather, strangers, and small ceremonies of attention.
+          </p>
+        </motion.header>
+
+        <div className="mx-auto max-w-[96rem] space-y-24 sm:space-y-36 lg:space-y-44">
+          <motion.div
+            initial={{ opacity: 0, y: 44 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-14% 0px" }}
+            transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+            className="-mx-5 sm:-mx-8 lg:-mx-10"
+          >
+            {renderPhoto(
+              fullImage,
+              "aspect-[16/10] w-full sm:aspect-[21/10]",
+              "100vw",
+            )}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 44 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-14% 0px" }}
+            transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+            className="grid items-start gap-14 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20"
+          >
+            <div className="lg:pt-24">
+              {renderPhoto(
+                pairImages[0],
+                "aspect-[4/5] w-full",
+                "(min-width: 1024px) 42vw, 100vw",
+              )}
+            </div>
+            <div>
+              {renderPhoto(
+                pairImages[1],
+                "aspect-[5/4] w-full",
+                "(min-width: 1024px) 52vw, 100vw",
+              )}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 44 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-14% 0px" }}
+            transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+            className="mx-auto max-w-3xl"
+          >
+            {renderPhoto(
+              portraitImage,
+              "aspect-[3/4] w-full",
+              "(min-width: 1024px) 48vw, 100vw",
+            )}
+          </motion.div>
+        </div>
+      </section>
+
+      <AnimatePresence>
+        {selectedPhoto && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0b0a08]/88 px-4 py-8 backdrop-blur-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+            onClick={() => setSelectedPhoto(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={selectedPhoto.title}
+          >
+            <motion.div
+              className="grid h-full w-full max-w-6xl grid-rows-[1fr_auto] gap-5"
+              initial={{ opacity: 0, y: 18, scale: 0.985 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 10, scale: 0.99 }}
+              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="relative min-h-0">
+                <Image
+                  src={selectedPhoto.src}
+                  alt={selectedPhoto.alt}
+                  fill
+                  sizes="100vw"
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              <div className="flex flex-col gap-4 border-t border-white/20 pt-4 text-[#f3f0ea] sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p className="font-display text-xl italic">
+                    {selectedPhoto.title}
+                  </p>
+                  <p className="mt-1 text-[0.65rem] uppercase tracking-[0.28em] text-[#b7b2a8]">
+                    {selectedPhoto.meta}
+                  </p>
+                  <p className="mt-3 max-w-xl text-sm leading-6 text-[#d8d1c5]">
+                    {selectedPhoto.sentence}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setSelectedPhoto(null)}
+                  className="self-start border border-white/30 px-4 py-2 text-[0.65rem] uppercase tracking-[0.24em] text-[#f3f0ea] transition duration-300 hover:bg-[#f3f0ea] hover:text-[#211f1b]"
+                  aria-label="Close photography lightbox"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </PageShell>
   );
 }

@@ -3,6 +3,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
+  --header-height: 88px;
+  --header-offset: calc(var(--header-height) + 24px);
   --background: #f3f0ea;
   --foreground: #211f1b;
   --surface: #f3f0ea;
@@ -195,6 +197,50 @@ a {
   background: transparent;
 }
 
+html:has(.home-scroll-page) {
+  scroll-padding-top: var(--header-offset);
+  scroll-snap-type: y proximity;
+}
+
+.home-scroll-page {
+  scroll-padding-top: var(--header-offset);
+  scroll-snap-type: y proximity;
+}
+
+.home-scroll-page > section {
+  scroll-margin-top: var(--header-offset);
+  scroll-snap-align: start;
+}
+
+.content-section {
+  min-height: 100vh;
+  padding-bottom: 96px;
+  padding-top: var(--header-offset);
+  scroll-margin-top: var(--header-offset);
+}
+
+.content-section > div {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--header-height) - 128px);
+}
+
+.content-section .section-header {
+  flex: 0 0 auto;
+  margin-bottom: 2rem;
+}
+
+.content-section .section-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.content-section .section-body > * {
+  width: 100%;
+}
+
 .exhibition-panel {
   backdrop-filter: blur(14px);
   box-shadow:
@@ -227,6 +273,13 @@ a {
 .museum-page > .site-ink-atmosphere {
   position: fixed;
   z-index: 0;
+}
+
+.museum-page > .floating-site-menu {
+  bottom: 1.25rem;
+  position: fixed;
+  right: 1.25rem;
+  z-index: 1000;
 }
 
 .museum-page nav {
@@ -432,6 +485,78 @@ body.ink-route-entering > main > div:not([aria-hidden="true"]):not(.ink-page-tra
 
 .about-manifesto-line:nth-child(4) {
   max-width: 32ch;
+}
+
+.photography-page {
+  background:
+    radial-gradient(ellipse at 50% 4%, rgba(255, 255, 255, 0.34), transparent 44%),
+    radial-gradient(ellipse at 8% 26%, rgba(5, 5, 5, 0.055), transparent 32%),
+    radial-gradient(ellipse at 92% 62%, rgba(74, 74, 74, 0.052), transparent 38%),
+    linear-gradient(180deg, rgba(243, 240, 234, 0.94), rgba(236, 231, 222, 0.78) 48%, rgba(243, 240, 234, 0.92));
+  isolation: isolate;
+  position: relative;
+}
+
+.photography-page::before {
+  background-image:
+    radial-gradient(circle at 18% 22%, rgba(5, 5, 5, 0.14) 0 0.7px, transparent 1px),
+    radial-gradient(circle at 76% 38%, rgba(5, 5, 5, 0.1) 0 0.6px, transparent 1px),
+    linear-gradient(102deg, transparent 0 18%, rgba(5, 5, 5, 0.028) 24%, transparent 38% 100%),
+    linear-gradient(84deg, transparent 0 58%, rgba(5, 5, 5, 0.024) 68%, transparent 86% 100%);
+  background-size: 19px 19px, 27px 27px, 100% 100%, 100% 100%;
+  content: "";
+  inset: 0;
+  mix-blend-mode: multiply;
+  opacity: 0.45;
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+}
+
+.photography-frame {
+  margin: 0;
+}
+
+.photography-image-button {
+  background: #211f1b;
+  box-shadow: 0 32px 90px rgba(5, 5, 5, 0.18);
+  cursor: zoom-in;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.photography-image-button::after {
+  background: linear-gradient(180deg, transparent 42%, rgba(5, 5, 5, 0.18));
+  content: "";
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity 700ms ease;
+}
+
+.photography-frame:hover .photography-image-button::after {
+  opacity: 1;
+}
+
+.photography-caption {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  padding-top: 1rem;
+}
+
+@media (max-width: 639px) {
+  .photography-caption {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+    padding-right: 3.5rem;
+  }
 }
 
 .about-brush-shadow {
@@ -1094,6 +1219,15 @@ body.ink-route-entering > main > div:not([aria-hidden="true"]):not(.ink-page-tra
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  html:has(.home-scroll-page),
+  .home-scroll-page {
+    scroll-snap-type: none;
+  }
+
   body > main > section:not([aria-hidden="true"]),
   body > main > article,
   body > main > div:not([aria-hidden="true"]):not(.ink-page-transition) {
@@ -1114,6 +1248,10 @@ body.ink-route-entering > main > div:not([aria-hidden="true"]):not(.ink-page-tra
     animation: none;
     opacity: calc(var(--ink-opacity) * 0.35);
     transform: none;
+  }
+
+  .photography-image-button img {
+    transition: none;
   }
 }
 
