@@ -1,0 +1,5 @@
+:HL["/_next/static/css/af2d2cd0dede10af.css","style"]
+3:[["children",{"s":"__PAGE__","h":160}]]
+2:[["children",{"s":{"n":"slug","t":"d","k":"defining-art-aesthetic-judgment-and-an-asian-american-artist","s":[]},"h":65632,"c":"$Q3"}]]
+1:[["children",{"s":"writing","h":131168,"c":"$Q2"}]]
+0:{"b":"4KEzP6m8uB6Rhiis6Vgpy","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}
